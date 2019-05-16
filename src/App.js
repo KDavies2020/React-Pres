@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Studentlist from './studentList.js';
+import Studentdata from './Studentdata.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+ class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: [],
+    }
+    this.onClickChangeColor = this.onClickChangeColor.bind(this);
+  }
+  //first event is loading the page. 
+
+  componentDidMount() {
+    this.setState({students: Studentdata})
+  }
+
+  //Where is this being used? 
+
+onClickChangeColor (e) {
+  e.target.style.color = 'red'
+ 
 }
+  render() {
+    return (
+      <div className="App">
+      <Studentlist students={this.state.students} onClick = {this.onClickChangeColor}/>
+      
+      </div>
+    )
+  }
+}
+
 
 export default App;
